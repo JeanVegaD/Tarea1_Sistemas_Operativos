@@ -134,9 +134,9 @@ public class backend {
  
     public int calculatePC(){
         int sizeOfInstrucctions = instructionsFromFile.size();
-        int init = 50- sizeOfInstrucctions;
+        int init = 90- sizeOfInstrucctions;
         int resultPc = new Random().nextInt(init);
-        return 50+resultPc;
+        return 10+resultPc;
     }
     
     //convierte el asm en una linea binaria 
@@ -156,19 +156,19 @@ public class backend {
         String res = "";
         switch(p_replace.toLowerCase()){
             case "load":
-                res = "001" ;
+                res = "0001" ;
                 break;
            case "store":
-                res = "010" ;
+                res = "0010" ;
                 break;
            case "mov":
-                res = "011" ;
+                res = "0011" ;
                 break;
            case "sub":
-                res = "100" ;
+                res = "0100" ;
                 break;
            case "add":
-                res = "101" ;
+                res = "0101" ;
                 break;
             case "ax":
                 res = "0001" ;
@@ -211,18 +211,18 @@ public class backend {
     
     //ejecuta la primera instruccion del archivo 
     public void executeFirstInstruction(String instruction){
-        String acction = instruction.substring(0, 3);
-        String register = instruction.substring(3, 7);
-        String number = instruction.substring(7, 15);;
+        String acction = instruction.substring(0, 4);
+        String register = instruction.substring(4, 8);
+        String number = instruction.substring(8, 16);;
         
         executeInstruction_aux(acction,register,number); 
     }
     
     //ejecuta la siguiente instruccion cuando es llamada con el boton de next 
     public void executeInstruction(String instruction){
-        String acction = instruction.substring(0, 3);
-        String register = instruction.substring(3, 7);
-        String number = instruction.substring(7, 15);;
+        String acction = instruction.substring(0, 4);
+        String register = instruction.substring(4,8);
+        String number = instruction.substring(8, 16);;
         
         executeInstruction_aux(acction,register,number);
         
@@ -240,7 +240,7 @@ public class backend {
     //determina la accion que debe reaizarza para guardar su valor en memoria
     public void executeInstruction_aux(String action, String register, String number){
         switch(action){
-            case "001": //load
+            case "0001": //load
                 if(number.equals("00000000")){
                     mainmemory.set(1,mainmemory.get(getIndexByMemory(register)));  
                 }else{
@@ -248,34 +248,34 @@ public class backend {
                 }
                 
                 break;
-           case "010"://store
+           case "0010"://store
                 if(number.equals("00000000")){
                     mainmemory.set(getIndexByMemory(register),mainmemory.get(1));  
                 }else{
                     mainmemory.set(getIndexByMemory(register),convertIntSttoBinarySt(number));
                 }
                 break;
-           case "011"://mov
+           case "0011"://mov
                 if(number.equals("00000000")){
                     mainmemory.set(1,mainmemory.get(getIndexByMemory(register)));  
                 }else{
                     mainmemory.set(getIndexByMemory(register),convertIntSttoBinarySt(number));
                 }
                 break;
-           case "100"://sub
+           case "0100"://sub
                 if(number.equals("00000000")){
                     int n1 = Integer.parseInt(mainmemory.get(getIndexByMemory(register)));
                     int n2 = Integer.parseInt(mainmemory.get(1));
-                    int res = n2-n1;
+                    int res = n1-n2;
                     mainmemory.set(1,Integer.toString(res));
                 }else{
                     int n1 = Integer.parseInt(mainmemory.get(getIndexByMemory(register)));
                     int n2 = Integer.parseInt(convertIntSttoBinarySt(number));
-                    int res = n2-n1;
+                    int res = n1-n2;
                     mainmemory.set(getIndexByMemory(register),Integer.toString(res));
                 }
                 break;
-           case "101"://add
+           case "0101"://add
                if(number.equals("00000000")){
                     int n1 = Integer.parseInt(mainmemory.get(getIndexByMemory(register)));
                     int n2 = Integer.parseInt(mainmemory.get(1));

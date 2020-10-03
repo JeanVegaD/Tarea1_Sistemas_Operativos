@@ -102,7 +102,6 @@ public class main extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tbl_instructions.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tbl_instructions.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 14)); // NOI18N
@@ -122,7 +121,6 @@ public class main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbl_instructions.setAutoscrolls(false);
         tbl_instructions.setFocusable(false);
         tbl_instructions.setGridColor(new java.awt.Color(255, 255, 255));
         tbl_instructions.setSelectionBackground(new java.awt.Color(0, 131, 143));
